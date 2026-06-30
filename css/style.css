@@ -287,17 +287,159 @@ a { text-decoration: none; color: inherit; }
   50%      { box-shadow: 0 4px 32px rgba(37,211,102,.65), 0 0 0 8px rgba(37,211,102,.08); }
 }
 
+/* ── HERO SPLIT (foto direita) ───────────────────── */
+.hero {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  padding: 0;
+}
+.hero-inner {
+  padding: 120px 6% 72px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+.hero-media {
+  position: relative;
+  overflow: hidden;
+  min-height: 100vh;
+}
+.hero-media img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center top;
+  filter: brightness(.88) saturate(.9);
+}
+
+/* ── PROFISSIONAL — foto da equipe ───────────────── */
+.prof-photo-wrap {
+  margin-bottom: 28px;
+  overflow: hidden;
+  border: 1px solid rgba(255,255,255,.14);
+  position: relative;
+}
+.prof-photo-wrap::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to bottom, transparent 55%, rgba(147,19,32,.5));
+  pointer-events: none;
+}
+.prof-photo-wrap img {
+  width: 100%;
+  height: 320px;
+  object-fit: cover;
+  object-position: center top;
+  display: block;
+}
+
+/* ── LOCALIZAÇÃO — foto fachada ──────────────────── */
+.loc-photo {
+  position: relative;
+  overflow: hidden;
+}
+.loc-photo img {
+  width: 100%;
+  height: 100%;
+  min-height: 360px;
+  object-fit: cover;
+  object-position: center;
+  display: block;
+  transition: transform .5s ease;
+}
+.loc-photo:hover img { transform: scale(1.02); }
+.loc-photo-caption {
+  position: absolute;
+  bottom: 0; left: 0; right: 0;
+  background: linear-gradient(to top, rgba(147,19,32,.92) 0%, transparent 100%);
+  padding: 40px 28px 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+.loc-photo-caption strong {
+  font-family: var(--display);
+  font-style: italic;
+  font-size: 1.1rem;
+  font-weight: 500;
+  color: var(--champagne);
+  display: block;
+}
+.loc-photo-caption span {
+  font-family: var(--sans);
+  font-size: .8rem;
+  color: rgba(232,220,200,.7);
+}
+.loc-photo-caption a {
+  font-family: var(--sans);
+  font-size: .8rem;
+  font-weight: 600;
+  color: var(--gold);
+  margin-top: 6px;
+  display: inline-block;
+  border-bottom: 1px solid currentColor;
+  padding-bottom: 1px;
+  width: fit-content;
+  transition: color .2s;
+}
+.loc-photo-caption a:hover { color: #d4b870; }
+
+/* ── RESULTADO (antes/depois) ────────────────────── */
+.resultado-strip {
+  display: grid;
+  grid-template-columns: 360px 1fr;
+  gap: 0;
+  margin-bottom: 56px;
+  border: 1px solid var(--border);
+  overflow: hidden;
+}
+.resultado-strip img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+.resultado-caption {
+  padding: 48px 44px;
+  background: var(--warm-white);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 16px;
+}
+.resultado-caption .section-eyebrow { margin-bottom: 0; }
+.resultado-caption p {
+  font-family: var(--display);
+  font-style: italic;
+  font-size: 1.15rem;
+  color: var(--text-mid);
+  line-height: 1.7;
+  max-width: 380px;
+}
+
 /* MOBILE */
 @media (max-width: 860px) {
   .main-nav { display: none; }
   .main-nav.open { display: flex; flex-direction: column; position: fixed; top: 64px; left: 0; right: 0; bottom: 0; background: var(--warm-white); padding: 40px 5%; gap: 20px; z-index: 199; overflow-y: auto; }
   .main-nav.open a { font-size: 1.1rem; color: var(--text); }
   .hamburger { display: flex; }
+  /* hero: stack vertical no mobile */
+  .hero { grid-template-columns: 1fr; }
+  .hero-inner { padding: 96px 5% 48px; }
+  .hero-media { min-height: 56vw; }
+  .hero-media img { position: static; width: 100%; height: 56vw; }
   .prof-block { grid-template-columns: 1fr; gap: 36px; }
   .svc-grid { grid-template-columns: 1fr; }
   .offer-steps { grid-template-columns: 1fr; }
   .loc-grid { grid-template-columns: 1fr; gap: 32px; }
+  .loc-photo img { min-height: 280px; }
   .poem-in { padding-left: 1rem; }
+  .resultado-strip { grid-template-columns: 1fr; }
+  .resultado-strip img { height: 280px; }
+  .resultado-caption { padding: 32px 24px; }
 }
 @media (max-width: 520px) {
   .hero-actions { flex-direction: column; }
